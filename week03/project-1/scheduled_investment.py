@@ -1,7 +1,3 @@
-# 注意 - Copy this file and rename as scheduled_investment_{first_name}.py then complete code with a PR.
-# 注意 - Copy this file and rename as scheduled_investment_{first_name}.py then complete code with a PR.
-# 注意 - Copy this file and rename as scheduled_investment_{first_name}.py then complete code with a PR.
-
 import pandas as pd
 import datetime as dt
 
@@ -68,6 +64,35 @@ def export_result() -> float:
 
 
 # -- TODO: Part 2 (END)
+
+# -- TODO: Part 3 - Bonus (START)
+# -- Recommend to copy and write to a new .csv file, so we will not mix Part 3 with Part 1 or 2
+def calculate_scheduled_investment_fixed_cost(data: pd.DataFrame) -> ():
+    pass
+
+
+def get_annual_return_fixed_cost() -> float:
+    pass
+
+
+def calculate_scheduled_investment_fixed_cost_with_sell(data: pd.DataFrame,
+                                                        sell_point: float,
+                                                        sell_percentage: float) -> ():
+    """
+
+    :param data:
+    :param sell_point: e.g. when asset equals to double of cost we can sell.
+    :param sell_percentage: e.g. we can sell 25%.
+    :return:
+    """
+    pass
+
+
+def get_annual_return_fixed_cost_with_sell() -> float:
+    pass
+
+
+# -- TODO: Part 3 (END)
 
 
 if __name__ == '__main__':
