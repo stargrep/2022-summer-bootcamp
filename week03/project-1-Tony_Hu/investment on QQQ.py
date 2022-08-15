@@ -62,14 +62,16 @@ for t in range(mydata.index[0],mydata.index[-1]+1):
                     # Temp records how much does "first-in" cost
                     temp = mydata['Shares'].loc[s] * mydata['OPEN'].loc[s]
                     mydata['Shares'].loc[s] -= sold
-                    mydata['Cost_Asset'].loc[t] -= temp
+                    # Update future asset cost because of selling
+                    mydata['Cost_Asset'].loc[t:] -= temp
                     break
                 # If single "first-in" cannot cover, keep looking downward until the sold shares is covered
                 else:
                     temp = mydata['Shares'].loc[s] * mydata['OPEN'].loc[s]
                     sold -= mydata['Shares'].loc[s]
                     mydata['Shares'].loc[s] = 0
-                    mydata['Cost_Asset'].loc[t] -= temp
+                    # Update future asset cost because of selling
+                    mydata['Cost_Asset'].loc[t:] -= temp
     # Update current asset and total cash received
     mydata['Asset'].loc[t] = mydata['Shares_sum'].loc[t] * mydata['CLOSE'].loc[t]
 mydata['Cash'] = mydata['Cash_in'].cumsum()
@@ -79,5 +81,5 @@ acc_ret = mydata['Profit'].iloc[-1] / mydata['Cost'].iloc[-1]
 annual_ret = acc_ret * 360 / len(mydata)
 plt.plot(mydata['Profit']/mydata['Cost'])
 plt.annotate('Annual return rate: %.2f%%, total return rate: %.2f%%' % (annual_ret*100, acc_ret*100),
-             xy=(0.01 * len(mydata), 0.8 * (mydata['Profit']/mydata['Cost']).max()))
+             xy=(0.15 * len(mydata), -0.05 * (mydata['Profit']/mydata['Cost']).max()))
 plt.show()
