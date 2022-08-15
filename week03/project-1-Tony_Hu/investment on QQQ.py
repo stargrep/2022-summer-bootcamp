@@ -60,7 +60,7 @@ for t in range(mydata.index[0],mydata.index[-1]+1):
                 # If the "first-in" covers the quantity sold, simply remove the cover part
                 if mydata['Shares'].loc[s] >= sold:
                     # Temp records how much does "first-in" cost
-                    temp = mydata['Shares'].loc[s] * mydata['OPEN'].loc[s]
+                    temp = sold * mydata['OPEN'].loc[s]
                     mydata['Shares'].loc[s] -= sold
                     # Update future asset cost because of selling
                     mydata['Cost_Asset'].loc[t:] -= temp
