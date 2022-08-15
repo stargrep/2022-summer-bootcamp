@@ -4,7 +4,7 @@ import warnings
 warnings.filterwarnings('ignore')
 #%%
 # Task1,2
-data = pd.DataFrame(pd.read_csv(r'C:\Users\78450\Desktop\INT\2022-summer-bootcamp-main\2022-summer-bootcamp-main\week03\mini-project-1\data\QQQ.csv'))
+data = pd.DataFrame(pd.read_csv(r'data\QQQ.csv'))
 mydata = data[data['CODES'] == 'QQQ']
 mydata['DATES'] = pd.to_datetime(mydata['DATES'])
 mydata['Signal'] = 0
@@ -23,7 +23,7 @@ plt.annotate('Annual return rate: %.2f%%, total return rate: %.2f%%' % (annual_r
 plt.show()
 #%%
 #Task 3
-data = pd.DataFrame(pd.read_csv(r'C:\Users\78450\Desktop\INT\2022-summer-bootcamp-main\2022-summer-bootcamp-main\week03\mini-project-1\data\QQQ.csv'))
+data = pd.DataFrame(pd.read_csv(r'data\QQQ.csv'))
 mydata = data[data['CODES'] == 'QQQ']
 mydata['DATES'] = pd.to_datetime(mydata['DATES'])
 mydata['Signal'] = 0
