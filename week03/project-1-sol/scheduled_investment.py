@@ -166,9 +166,6 @@ def get_annual_return_fixed_cost_with_sell() -> float:
     return annual_return(10, assets[-1] / cost[-1])  # 10 years
 
 
-# -- TODO: Part 3 (END)
-
-
 if __name__ == '__main__':
     print("Investment Return: ", export_result() * 100, "%")
     print("Investment Return: ", get_annual_return_fixed_cost() * 100, "%")
