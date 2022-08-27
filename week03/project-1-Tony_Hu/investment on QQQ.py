@@ -18,12 +18,10 @@ mydata['Cost'] = (mydata['Signal'] * 100 * mydata['OPEN']).cumsum()
 mydata['Asset'] = mydata['Shares_sum'] * mydata['CLOSE']
 # Evaluating performance
 mydata['Profit'] = mydata['Asset'] - mydata['Cost']
-acc_ret = mydata['Profit'].iloc[-1] / mydata['Cost'].iloc[-1]
-annual_ret = acc_ret * 360 / len(mydata)
-plt.plot(mydata['Profit']/mydata['Cost'])
-plt.annotate('Annual return rate: %.2f%%, total return rate: %.2f%%' % (annual_ret*100, acc_ret*100),
-             xy=(0.01 * len(mydata), 0.8 * (mydata['Profit']/mydata['Cost']).max()))
-plt.show()
+acc_ret_t1 = mydata['Profit'].iloc[-1] / mydata['Cost'].iloc[-1]
+annual_ret_t1 = acc_ret_t1 * 360 / len(mydata)
+# Save the record
+mydata_t1 = mydata.copy()
 #%%
 #Task 3
 # Read data and select target fund
@@ -75,11 +73,15 @@ for t in range(mydata.index[0],mydata.index[-1]+1):
     # Update current asset and total cash received
     mydata['Asset'].loc[t] = mydata['Shares_sum'].loc[t] * mydata['CLOSE'].loc[t]
 mydata['Cash'] = mydata['Cash_in'].cumsum()
-# Evaluating performance
+# Evaluating performance and compare with task1,2
 mydata['Profit'] = mydata['Asset'] + mydata['Cash'] - mydata['Cost']
 acc_ret = mydata['Profit'].iloc[-1] / mydata['Cost'].iloc[-1]
 annual_ret = acc_ret * 360 / len(mydata)
-plt.plot(mydata['Profit']/mydata['Cost'])
-plt.annotate('Annual return rate: %.2f%%, total return rate: %.2f%%' % (annual_ret*100, acc_ret*100),
-             xy=(0.15 * len(mydata), -0.05 * (mydata['Profit']/mydata['Cost']).max()))
+plt.plot(mydata_t1['Profit']/mydata_t1['Cost'],color='blue')
+plt.plot(mydata['Profit']/mydata['Cost'],color='red')
+plt.legend(['Task1,2','Task3'])
+plt.annotate(
+    'Task1,2 annual return rate: %.2f%%, total return rate: %.2f%%\nTask3 annual return rate: %.2f%%, total return rate: %.2f%%' % (
+    annual_ret_t1 * 100, acc_ret_t1 * 100, annual_ret * 100, acc_ret * 100),
+    xy=(0.001 * len(mydata_t1), 0.8 * (mydata_t1['Profit'] / mydata_t1['Cost']).max()))
 plt.show()
