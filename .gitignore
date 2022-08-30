@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/2022-summer-bootcamp.iml
+.idea/workspace.xml
+.idea/csv-plugin.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
