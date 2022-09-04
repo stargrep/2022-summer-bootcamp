@@ -1,4 +1,4 @@
-## Mini-project 1
+## Project 3
 
 ### Requirement
 There are 4 parts of this project - [3 and 4 are bonus parts]

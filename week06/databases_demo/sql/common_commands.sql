@@ -2,6 +2,7 @@
 .databases
 $sqlite3 testDB.db .dump > testDB.sql
 $sqlite3 testDB.db < testDB.sql
+-- in windows use `testDB.db -init demo1.sql`
 
 sqlite> .read db.sql
 .mode csv
@@ -90,6 +91,8 @@ SELECT * FROM price WHERE open > 500;
 -- 找到在price里面Exchange symbol的list
 -- GOOG ->
 -- NYSE
+
+SELECT symbol, count(*) FROM price GROUP BY symbol;
 
 SELECT ... FROM table1 [INNER] JOIN table2 ON conditional_expression
 

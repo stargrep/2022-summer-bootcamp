@@ -1,4 +1,4 @@
-## Mini-project 2
+## Project 2
 
 ### Requirement
 There are 6 parts of this project, totally 100 points.
