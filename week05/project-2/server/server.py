@@ -16,7 +16,7 @@ def default():
 
     :return: str
     """
-    return "FIRST PROJECT - we have " + str(len(get_client_rates())) + " clients in total."
+    return "PROJECT 3 - we have " + str(len(get_client_rates())) + " clients in total."
 
 
 # sample data load function

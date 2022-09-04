@@ -20,17 +20,15 @@ Always run webserver first, without a running webserver and API WILL NOT WORK!
 Use command line go to mini-project/server folder
 Run 
 ```
-> cd mini-project-2/server
-> python3 web-server.py
+> cd project/server
+> python3 server.py
 ```
 Then Run your API and Test
 ```
-> cd mini-project-2/client
-> python3 rate-api.py
+> cd project/client
+> python3 client.py
 ```
 Or running with full path / running with pycharm/spyder. 
 
 #### Notes
-Please read the comments in server/web.py and api/rate-api.py carefully.
-Make sure you understand what the project is trying to do before make any edition.
-Complete project following the order of each parts.
+Please read code and TODOs in the code.
