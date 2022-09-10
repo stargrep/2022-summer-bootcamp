@@ -343,6 +343,17 @@ pt  c1  p1  c2   p2
 
 """
 
+def max_profit2(prices: [float]) -> float:
+    cost1, cost2 = float('inf'), float('inf')
+    profit1, profit2 = 0, 0
+
+    for p in prices:
+        cost1 = min(cost1, p)
+        profit1 = max(profit1, p - cost1)
+        cost2 = min(cost2, p - profit1)
+        profit2 = max(profit2, p - cost2)
+
+    return profit2
 
 
 assert max_profit2([2, 2, 6, 1, 2, 4, 2, 7]) == 10
