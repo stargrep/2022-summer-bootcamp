@@ -12,8 +12,6 @@ def is_prime(n: int) -> bool:
 assert is_prime(2)
 assert not is_prime(15)
 assert is_prime(7907)
-assert not is_prime(-1)
-assert not is_prime(0)
 
 
 # Q2 Write a function rotate(ar[], d) that rotates arr[] of size n by d elements.
