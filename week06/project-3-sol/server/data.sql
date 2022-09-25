@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS strategy_return (
     end_date TEXT,
     annual_return REAL,
     asset REAL,
-    cost REAL
+    cost REAL,
+    symbol TEXT
 );
 
 INSERT INTO client_rates

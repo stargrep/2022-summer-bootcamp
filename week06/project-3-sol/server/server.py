@@ -27,7 +27,8 @@ def get_client_rates():
 
     :return: DataFrame {id, client_id, rate}
     """
-    return execute_read("SELECT * from client_rates")
+    res = execute_read("SELECT * from client_rates")
+    return res
 
 
 
@@ -82,7 +83,7 @@ def update_client_rates(client_id, rate):
 def trigger_pricing_etl(symbol):
     update_records = update_pricing_data(symbol)
     if update_records >= 0:
-        return f"Updated {update_pricing_data(symbol)} Records for {symbol}."
+        return f"Updated {update_records} Records for {symbol}."
     else:
         return f"ETL Update failed for {symbol}"
 
@@ -90,7 +91,7 @@ def trigger_pricing_etl(symbol):
 @app.route("/calculate_return/<symbol>", methods=['GET'])
 def calculate_return(symbol):
     asset, cost, return_ = get_annual_return_fixed_cost(symbol, '2017-01-01', '2022-01-01')
-    return f"5 years annual return for {symbol} is {return_} from 2017 - 2022"
+    return f"5 years annual return for {symbol} is {-return_}% from 2017 - 2022"
 
 
 if __name__ == "__main__":

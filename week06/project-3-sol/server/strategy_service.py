@@ -1,5 +1,7 @@
 import pandas as pd
 import datetime as dt
+from database_service import *
+
 
 OPEN = 'open_price'
 DATE = 'trade_date'
@@ -7,7 +9,9 @@ DATE = 'trade_date'
 
 def read_data_from_db(symbol: str, start: str, end: str) -> pd.DataFrame:
     # TODO - Implement read data from stock price db using start date, end date and symbol
-    return None
+    pd = execute_read_df(f"SELECT * FROM stock_price WHERE symbol = '{symbol}' AND"
+                         f" trade_date >= '{start}' AND trade_date <= '{end}'")
+    return pd
 
 
 def write_data(symbol: str,
@@ -18,7 +22,12 @@ def write_data(symbol: str,
                cost: float) -> None:
     # TODO - Implement insert a new result to strategy_return for given symbol.
     # If you have more time, you can add a new field for max_withdraw and sharpe_ratio to catch risk
-    return None
+    try:
+        execute_write(f"INSERT INTO strategy_return VALUES('stategy1', '{start}', '{end}'"
+                  f",{annual},{asset},{cost},'{symbol}')")
+        print(f"write data for {symbol} using strategy1")
+    except Exception as e:
+        print(e)
 
 
 def is_monday(day: str) -> bool:
@@ -39,7 +48,7 @@ def calculate_scheduled_investment_fixed_cost(data: pd.DataFrame, fixed_cost: fl
     for i in range(1, len(data)):
         open_price = data.iloc[i][OPEN]
         date = data.iloc[i][DATE]
-        if is_monday(date):
+        if is_monday(date[:10]):
             shares = fixed_cost // open_price
             positions.append(positions[-1] + shares)
             cost.append(cost[i - 1] + open_price * shares)
@@ -64,5 +73,5 @@ def get_annual_return_fixed_cost(symbol: str, start: str, end: str) -> ():
     asset = assets[-1]
     cost = costs[-1]
     annual_return = get_annual_return(asset, cost)
-    write_data(symbol, start, end)
+    # write_data(symbol, start, end)
     return asset, cost, annual_return
